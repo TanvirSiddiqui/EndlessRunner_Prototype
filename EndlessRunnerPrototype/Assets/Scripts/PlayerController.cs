@@ -73,8 +73,20 @@ public class PlayerController : MonoBehaviour
 
         /*  transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);*/
       //  float targetX = desiredLane * laneDistance;
-         targetPosition = new Vector3(targetPosition.x,transform.position.y, transform.position.z);
-        transform.position = targetPosition;
+      /*   targetPosition = new Vector3(targetPosition.x,transform.position.y, transform.position.z);
+        transform.position = targetPosition;*/
+        if (transform.position == targetPosition)
+            return;
+        Vector3 diff = targetPosition - transform.position;
+        Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+        if (moveDir.sqrMagnitude < diff.sqrMagnitude)
+        {
+            controller.Move(moveDir);
+        }
+        else
+        {
+            controller.Move(diff);
+        }
     }
 
     private void Jump()
