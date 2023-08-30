@@ -157,6 +157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: S_Modular_Safety_Rail_Kit_wmnoef3dw_lod5_Var1
       objectReference: {fileID: 0}
+    - target: {fileID: 4100257280352426996, guid: 4bef9fa2aa5f0a44090c0c6e4f95cfde, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 4802915087485707358, guid: 4bef9fa2aa5f0a44090c0c6e4f95cfde, type: 3}
       propertyPath: m_RootOrder
       value: 1

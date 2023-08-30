@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Debug.Log(desiredLane);
     }
 
     // Update is called once per frame
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("Right Arrow Pressed");
             desiredLane++;
             if (desiredLane >= 3)
             {
@@ -48,7 +46,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Debug.Log("Left Arrow Pressed");
             desiredLane--;
             if (desiredLane <= 0)
             {
@@ -97,5 +94,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         controller.Move(direction * Time.fixedDeltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "Obstacles")
+        {
+            PlayerManager.gameOver = true;
+            Debug.Log("Game Over");
+        }
     }
 }

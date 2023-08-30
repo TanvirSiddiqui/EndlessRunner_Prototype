@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 405857649}
   m_Layer: 0
   m_Name: S_Old_Concrete_Barrier_vkurdfd_lod5_Var1
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
