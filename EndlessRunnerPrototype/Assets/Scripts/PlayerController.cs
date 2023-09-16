@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     public float forwardSpeed;
     private int desiredLane = 1;
+    private bool isSliding=false;
     public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             direction.y += gravity * Time.deltaTime;
             playerAnim.SetBool("IsJumping", false);
+        }
+
+        if (SwipeManager.swipeDown&&!isSliding)
+        {
+            StartCoroutine(Slide());
         }
 
         if (SwipeManager.swipeRight)
@@ -100,6 +106,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator Slide()
+    {
+        isSliding = true;
+        playerAnim.SetBool("IsSliding",true);
+        controller.center = new Vector3(0,0.60f,0);
+        controller.height = 0.5f;
+        yield return new WaitForSeconds(1.3f);
+        playerAnim.SetBool("IsSliding", false);
+        controller.center = new Vector3(0, 0.79f, 0);
+        controller.height = 1.23f;
+        isSliding = false;
+    }
+
     private void Jump()
     {
         direction.y = jumpForce;
@@ -117,8 +136,14 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacles")
         {
-            PlayerManager.gameOver = true;
-            Debug.Log("Game Over");
+            playerAnim.SetBool("IsDead", true);
+            Invoke("GameOver", 2f);
         }
+    }
+
+    private void GameOver()
+    {
+        PlayerManager.gameOver = true;
+        Debug.Log("Game Over");
     }
 }

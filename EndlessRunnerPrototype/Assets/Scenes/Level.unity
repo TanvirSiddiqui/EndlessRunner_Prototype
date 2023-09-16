@@ -723,6 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2856661579b9345a3d807d15ea3f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   forwardSpeed: 5
   laneDistance: 2.5
   jumpForce: 7.5
@@ -737,7 +738,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 936482672}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.16
   m_Height: 1.23
   m_Direction: 1
@@ -1233,15 +1234,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefabs:
   - {fileID: 3127463749842618481, guid: cfd1bd52a35714141ba4e1ea964f564a, type: 3}
-  - {fileID: 4869000215426371030, guid: 6b2d1dcfc896adf4fbd369a0e621b1b3, type: 3}
+  - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
   - {fileID: 5844494637338516596, guid: be18a589855a21e4d9683858a1ac234d, type: 3}
-  - {fileID: 6977313967981477169, guid: d9697ff26e2df7d48931122446ab8597, type: 3}
+  - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
   - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
   - {fileID: 4771220904675111789, guid: 2273450225c6d8546a32213a878cbd7c, type: 3}
   zSpawn: 0
   tileLength: 99.9
   numberOfTiles: 3
-  playerTransform: {fileID: 2101119287}
+  playerTransform: {fileID: 936482677}
 --- !u!4 &1588725631
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,6 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2856661579b9345a3d807d15ea3f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   forwardSpeed: 5
   laneDistance: 2.5
   jumpForce: 0
@@ -1755,6 +1757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2856661579b9345a3d807d15ea3f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   forwardSpeed: 5
   laneDistance: 2.5
   jumpForce: 15
