@@ -6,36 +6,47 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
+    public GameObject player;
     private Vector3 direction;
     public float forwardSpeed;
     private int desiredLane = 1;
     public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
+
+    public Animator playerAnim;
+
+    private Quaternion initialRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.rotation = initialRotation;
         if (!PlayerManager.isGameStarted)
             return;
 
         direction.z = forwardSpeed;
+        playerAnim.SetBool("IsRunning", true);
       
         if (controller.isGrounded)
         {
             if (SwipeManager.swipeUp)
             {
+                playerAnim.SetBool("IsJumping", true);
                 Jump();
             }
         }
         else
         {
             direction.y += gravity * Time.deltaTime;
+            playerAnim.SetBool("IsJumping", false);
         }
 
         if (SwipeManager.swipeRight)
