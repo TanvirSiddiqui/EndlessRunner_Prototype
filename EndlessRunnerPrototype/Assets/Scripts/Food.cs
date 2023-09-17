@@ -14,11 +14,11 @@ public class Food : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+      /*  if (other.tag == "Player")
         {
             PlayerManager.totalPoints += 1;
             Destroy(gameObject);
             Debug.Log("Total points: " + PlayerManager.totalPoints);
-        }
+        }*/
     }
 }

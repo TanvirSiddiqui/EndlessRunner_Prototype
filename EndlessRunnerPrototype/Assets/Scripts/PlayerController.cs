@@ -139,6 +139,23 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("IsDead", true);
             Invoke("GameOver", 2f);
         }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "JunkFood")
+        {
+            PlayerManager.totalPoints -= 1;
+            Destroy(other.gameObject);
+            Debug.Log("Junk food: " + PlayerManager.totalPoints);
+        }
+        if (other.transform.tag == "GoodFood")
+        {
+            PlayerManager.totalPoints += 1;
+            Destroy(other.gameObject);
+            Debug.Log("Good food: " + PlayerManager.totalPoints);
+        }
     }
 
     private void GameOver()
