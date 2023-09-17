@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacles
+  - GoodFood
+  - JunkFood
   layers:
   - Default
   - TransparentFX

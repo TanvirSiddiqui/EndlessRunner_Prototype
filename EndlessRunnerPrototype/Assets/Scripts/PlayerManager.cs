@@ -9,12 +9,14 @@ public class PlayerManager : MonoBehaviour
     public static bool isGameStarted;
 
     public GameObject startingTxt;
+    public static int totalPoints;
     // Start is called before the first frame update
     void Start()
     {
         gameOver = false;
         Time.timeScale = 1;
         isGameStarted = false;
+        totalPoints = 0;
     }
 
     // Update is called once per frame
