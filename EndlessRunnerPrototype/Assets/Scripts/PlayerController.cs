@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator playerAnim;
 
-    private Quaternion initialRotation;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
         if (!PlayerManager.isGameStarted)
             return;
 
@@ -40,6 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             if (SwipeManager.swipeUp)
             {
+            
                 playerAnim.SetBool("IsJumping", true);
                 Jump();
             }
@@ -95,7 +94,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position == targetPosition)
             return;
         Vector3 diff = targetPosition - transform.position;
-        Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+        Vector3 moveDir = diff.normalized * 15 * Time.deltaTime;
         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
         {
             controller.Move(moveDir);
@@ -108,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Slide()
     {
+       
         isSliding = true;
         playerAnim.SetBool("IsSliding",true);
         controller.center = new Vector3(0,0.60f,0);
@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
         if (!PlayerManager.isGameStarted)
             return;
 
