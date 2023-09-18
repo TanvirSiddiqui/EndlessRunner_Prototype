@@ -5,15 +5,17 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     public GameObject[] tilePrefabs;
-    public float zSpawn=0;
+    public float zSpawn = 0;
     public float tileLength = 99.9f;
     public int numberOfTiles = 5;
     private List<GameObject> activeTiles = new List<GameObject>();
+    public float prefabOffset;
     public Transform playerTransform;
+
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < numberOfTiles; i++)
+        for (int i = 0; i < numberOfTiles; i++)
         {
             if (i == 0)
             {
@@ -23,14 +25,13 @@ public class TileManager : MonoBehaviour
             {
                 SpawnTile(Random.Range(0, tilePrefabs.Length));
             }
-            
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerTransform.position.z-60 > zSpawn - (numberOfTiles * tileLength))
+        if (playerTransform.position.z - 200 > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(Random.Range(0, tilePrefabs.Length));
             DeleteTile();
@@ -39,7 +40,10 @@ public class TileManager : MonoBehaviour
 
     public void SpawnTile(int tileIndex)
     {
-       GameObject go= Instantiate(tilePrefabs[tileIndex],transform.forward*zSpawn,transform.rotation);
+        GameObject prefabToSpawn = tilePrefabs[tileIndex];
+      //  float prefabOffset = 0; // Adjust this offset based on prefab sizes if needed
+
+        GameObject go = Instantiate(prefabToSpawn, new Vector3(prefabOffset, 0, zSpawn-8), transform.rotation);
         activeTiles.Add(go);
         zSpawn += tileLength;
     }

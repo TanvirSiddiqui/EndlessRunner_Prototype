@@ -1253,15 +1253,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefabs:
-  - {fileID: 3127463749842618481, guid: cfd1bd52a35714141ba4e1ea964f564a, type: 3}
-  - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
-  - {fileID: 5844494637338516596, guid: be18a589855a21e4d9683858a1ac234d, type: 3}
-  - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
-  - {fileID: 7936076697498895874, guid: 2ad686b1cc3421c48bd6a4c6e034f2d4, type: 3}
-  - {fileID: 4771220904675111789, guid: 2273450225c6d8546a32213a878cbd7c, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
+  - {fileID: 2319781342261449735, guid: 1b71e2496437c444db76d5dc10b58e73, type: 3}
   zSpawn: 0
-  tileLength: 99.9
+  tileLength: 100
   numberOfTiles: 3
+  prefabOffset: 20
   playerTransform: {fileID: 936482677}
 --- !u!4 &1588725631
 Transform:
