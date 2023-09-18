@@ -23,13 +23,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        initialRotation = transform.rotation;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = initialRotation;
+      
         if (!PlayerManager.isGameStarted)
             return;
 
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
               targetPosition.x = 0;  // Center lane
           }
 
-        /*  transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);*/
+        /* transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);*/
       //  float targetX = desiredLane * laneDistance;
       /*   targetPosition = new Vector3(targetPosition.x,transform.position.y, transform.position.z);
         transform.position = targetPosition;*/
