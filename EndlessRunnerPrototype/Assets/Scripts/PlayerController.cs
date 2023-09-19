@@ -6,18 +6,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    public GameObject player;
     private Vector3 direction;
     public float forwardSpeed;
+    public float rotationSpeed;
     private int desiredLane = 1;
-    private bool isSliding=false;
+    private bool isSliding = false;
     public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
 
     public Animator playerAnim;
 
- 
+    private bool isRunning = false; // Add a flag for running animation control
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +30,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!PlayerManager.isGameStarted)
+        {
+            transform.rotation = Quaternion.identity; // Fix the rotation when not started
+            isRunning = true;
             return;
+        }
 
         direction.z = forwardSpeed;
-        playerAnim.SetBool("IsRunning", true);
+        playerAnim.SetBool("IsRunning", isRunning);
       
         if (controller.isGrounded)
         {
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            isRunning = false;
             direction.y += gravity * Time.deltaTime;
             playerAnim.SetBool("IsJumping", false);
         }
@@ -126,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
+
         if (!PlayerManager.isGameStarted)
             return;
 
