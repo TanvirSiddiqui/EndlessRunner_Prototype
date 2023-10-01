@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.identity; // Fix the rotation when not started
             isRunning = true;
+            transform.rotation = Quaternion.identity;
             return;
         }
 
@@ -45,8 +46,7 @@ public class PlayerController : MonoBehaviour
             if (SwipeManager.swipeUp)
             {
                 transform.rotation = Quaternion.identity;
-                playerAnim.SetBool("IsJumping", true);
-                Jump();
+                StartCoroutine(Jump());
                 transform.rotation = Quaternion.identity;
             }
         }
@@ -54,11 +54,11 @@ public class PlayerController : MonoBehaviour
         {
             isRunning = false;
             direction.y += gravity * Time.deltaTime;
-            playerAnim.SetBool("IsJumping", false);
         }
 
         if (SwipeManager.swipeDown&&!isSliding)
         {
+            transform.rotation = Quaternion.identity;
             StartCoroutine(Slide());
         }
 
@@ -69,15 +69,18 @@ public class PlayerController : MonoBehaviour
             if (desiredLane >= 3)
             {
                 desiredLane = 2;
+                transform.rotation = Quaternion.identity;
             }
             transform.rotation = Quaternion.identity;
         }
 
         if (SwipeManager.swipeLeft)
         {
+            transform.rotation = Quaternion.identity;
             desiredLane--;
             if (desiredLane <= 0)
             {
+                transform.rotation = Quaternion.identity;
                 desiredLane = 0;
             }
             transform.rotation = Quaternion.identity;
@@ -135,10 +138,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
+        playerAnim.SetBool("IsJumping", true);
         transform.rotation = Quaternion.identity;
         direction.y = jumpForce;
+        transform.rotation = Quaternion.identity;
+        yield return new WaitForSeconds(1f);
+        playerAnim.SetBool("IsJumping", false);
         transform.rotation = Quaternion.identity;
     }
 
