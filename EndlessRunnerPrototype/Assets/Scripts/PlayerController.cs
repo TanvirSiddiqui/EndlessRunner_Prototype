@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
+       
     }
 
     // Update is called once per frame
@@ -41,11 +41,13 @@ public class PlayerController : MonoBehaviour
       
         if (controller.isGrounded)
         {
+            
             if (SwipeManager.swipeUp)
             {
-            
+                transform.rotation = Quaternion.identity;
                 playerAnim.SetBool("IsJumping", true);
                 Jump();
+                transform.rotation = Quaternion.identity;
             }
         }
         else
@@ -62,11 +64,13 @@ public class PlayerController : MonoBehaviour
 
         if (SwipeManager.swipeRight)
         {
+            transform.rotation = Quaternion.identity;
             desiredLane++;
             if (desiredLane >= 3)
             {
                 desiredLane = 2;
             }
+            transform.rotation = Quaternion.identity;
         }
 
         if (SwipeManager.swipeLeft)
@@ -76,17 +80,19 @@ public class PlayerController : MonoBehaviour
             {
                 desiredLane = 0;
             }
+            transform.rotation = Quaternion.identity;
         }
 
          Vector3 targetPosition = transform.position;
 
           if (desiredLane == 0)
           {
-              targetPosition.x = -laneDistance;
+            targetPosition.x = -laneDistance;
           }
           else if (desiredLane == 2)
           {
-              targetPosition.x = laneDistance;
+           
+            targetPosition.x = laneDistance;
           }
           else  // This covers desiredLane == 1
           {
@@ -103,7 +109,9 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = diff.normalized * 15 * Time.deltaTime;
         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
         {
+            transform.rotation = Quaternion.identity;
             controller.Move(moveDir);
+            transform.rotation = Quaternion.identity;
         }
         else
         {
@@ -113,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Slide()
     {
-       
+        transform.rotation = Quaternion.identity;
         isSliding = true;
         playerAnim.SetBool("IsSliding",true);
         controller.center = new Vector3(0,0.60f,0);
@@ -121,13 +129,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         playerAnim.SetBool("IsSliding", false);
         controller.center = new Vector3(0, 0.79f, 0);
-        controller.height = 1.23f;
+        controller.height = 1.45f;
         isSliding = false;
+        transform.rotation = Quaternion.identity;
+
     }
 
     private void Jump()
     {
+        transform.rotation = Quaternion.identity;
         direction.y = jumpForce;
+        transform.rotation = Quaternion.identity;
     }
 
     private void FixedUpdate()
