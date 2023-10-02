@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3065733871667357671
+--- !u!1 &3501951191399568893
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3130396525272467766}
-  - component: {fileID: 5199977103597809998}
-  - component: {fileID: 5594436740249754550}
-  - component: {fileID: 320890881123241871}
+  - component: {fileID: 5636929150511957438}
+  - component: {fileID: 4817096097699086250}
+  - component: {fileID: 8669571743011789140}
   m_Layer: 0
-  m_Name: S_Fried_Chicken_Wing_vcqifcj_lod5_Var1
-  m_TagString: JunkFood
+  m_Name: Grape
+  m_TagString: GoodFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3130396525272467766
+--- !u!4 &5636929150511957438
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065733871667357671}
+  m_GameObject: {fileID: 3501951191399568893}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.1581, y: 0, z: 0.193}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -0, y: 5.28, z: 0}
+  m_LocalScale: {x: 0.125, y: 0.03333333, z: 0.125}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7969515004868682742}
+  - {fileID: 6344149611834776291}
   m_Father: {fileID: 0}
-  m_RootOrder: -2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &5199977103597809998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065733871667357671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27dadd860a3f614aab27ccb54380a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 20
---- !u!135 &5594436740249754550
+--- !u!135 &4817096097699086250
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065733871667357671}
+  m_GameObject: {fileID: 3501951191399568893}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -67,22 +53,22 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.03
-  m_Center: {x: 0.16, y: 0, z: -0.15}
---- !u!114 &320890881123241871
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8669571743011789140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065733871667357671}
+  m_GameObject: {fileID: 3501951191399568893}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27dadd860a3f614aab27ccb54380a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
---- !u!1 &7032017437730138077
+--- !u!1 &6780560511864607038
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,46 +76,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7969515004868682742}
-  - component: {fileID: 4634838388920895831}
-  - component: {fileID: 5359532948797705532}
+  - component: {fileID: 6344149611834776291}
+  - component: {fileID: 2187794065449816718}
+  - component: {fileID: 8314192013851585713}
   m_Layer: 0
-  m_Name: S_Fried_Chicken_Wing_vcqifcj_lod5_Var1_LOD0
-  m_TagString: Untagged
+  m_Name: S_Red_Grapes_wjbgdiz_lod5_LOD2
+  m_TagString: GoodFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7969515004868682742
+--- !u!4 &6344149611834776291
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7032017437730138077}
+  m_GameObject: {fileID: 6780560511864607038}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0272, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3130396525272467766}
-  m_RootOrder: -2
+  m_Father: {fileID: 5636929150511957438}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4634838388920895831
+--- !u!33 &2187794065449816718
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7032017437730138077}
-  m_Mesh: {fileID: 7919558696682687424, guid: 4072086743efa424089232445ad13467, type: 3}
---- !u!23 &5359532948797705532
+  m_GameObject: {fileID: 6780560511864607038}
+  m_Mesh: {fileID: 2971688882648679567, guid: 4d7be0de65b4cf340a99595aa598d08b, type: 3}
+--- !u!23 &8314192013851585713
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7032017437730138077}
+  m_GameObject: {fileID: 6780560511864607038}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -143,7 +129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 951fcc38c7c62964e8d78ff861b03be3, type: 2}
+  - {fileID: 2100000, guid: cd491c2e9ed72fe4ebbcbf70267862d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
