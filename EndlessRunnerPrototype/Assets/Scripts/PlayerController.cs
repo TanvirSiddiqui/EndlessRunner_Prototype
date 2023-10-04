@@ -162,6 +162,8 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacles")
         {
+            PlayerManager.gameOver = true;
+            FindObjectOfType<AudioManager>().PlaySound("GameOver");
             playerAnim.SetBool("IsDead", true);
             Invoke("GameOver", 2f);
         }
@@ -178,6 +180,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.transform.tag == "GoodFood")
         {
+            FindObjectOfType<AudioManager>().PlaySound("PickUpCoin");
             PlayerManager.totalPoints += 1;
             Destroy(other.gameObject);
             Debug.Log("Good food: "+other.gameObject.name+" " + PlayerManager.totalPoints);
