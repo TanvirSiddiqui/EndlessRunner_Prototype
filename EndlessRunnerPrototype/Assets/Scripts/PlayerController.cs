@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerManager.totalPoints += 1;
             Destroy(other.gameObject);
-            Debug.Log("Good food: " + PlayerManager.totalPoints);
+            Debug.Log("Good food: "+other.gameObject.name+" " + PlayerManager.totalPoints);
         }
     }
 
