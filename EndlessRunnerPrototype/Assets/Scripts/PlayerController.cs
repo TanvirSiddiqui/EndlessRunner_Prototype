@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
+    private bool sideRotation;
 
     public Animator playerAnim;
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sideRotation = true;
         controller = GetComponent<CharacterController>();
        
     }
@@ -42,9 +44,15 @@ public class PlayerController : MonoBehaviour
       
         if (controller.isGrounded)
         {
+            if (sideRotation)
+            {
+                transform.rotation = Quaternion.identity;
+                sideRotation = false;
+            }
             
             if (SwipeManager.swipeUp)
             {
+                sideRotation = true;
                 transform.rotation = Quaternion.identity;
                 StartCoroutine(Jump());
                 transform.rotation = Quaternion.identity;
@@ -64,10 +72,12 @@ public class PlayerController : MonoBehaviour
 
         if (SwipeManager.swipeRight)
         {
+            sideRotation = true;
             transform.rotation = Quaternion.identity;
             desiredLane++;
             if (desiredLane >= 3)
             {
+                transform.rotation = Quaternion.identity;
                 desiredLane = 2;
                 transform.rotation = Quaternion.identity;
             }
@@ -76,12 +86,14 @@ public class PlayerController : MonoBehaviour
 
         if (SwipeManager.swipeLeft)
         {
+            sideRotation = true;
             transform.rotation = Quaternion.identity;
             desiredLane--;
             if (desiredLane <= 0)
             {
                 transform.rotation = Quaternion.identity;
                 desiredLane = 0;
+                transform.rotation = Quaternion.identity;
             }
             transform.rotation = Quaternion.identity;
         }
@@ -90,11 +102,12 @@ public class PlayerController : MonoBehaviour
 
           if (desiredLane == 0)
           {
+           
             targetPosition.x = -laneDistance;
           }
           else if (desiredLane == 2)
           {
-           
+            
             targetPosition.x = laneDistance;
           }
           else  // This covers desiredLane == 1
@@ -107,7 +120,7 @@ public class PlayerController : MonoBehaviour
       /*   targetPosition = new Vector3(targetPosition.x,transform.position.y, transform.position.z);
         transform.position = targetPosition;*/
         if (transform.position == targetPosition)
-            return;
+             return;
         Vector3 diff = targetPosition - transform.position;
         Vector3 moveDir = diff.normalized * 15 * Time.deltaTime;
         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
