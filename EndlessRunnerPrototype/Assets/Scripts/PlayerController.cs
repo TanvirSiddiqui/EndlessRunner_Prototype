@@ -14,18 +14,20 @@ public class PlayerController : MonoBehaviour
     public float laneDistance = 4;
     public float jumpForce;
     public float gravity = -20;
-    private bool sideRotation;
 
     public Animator playerAnim;
 
-    private bool isRunning = false; // Add a flag for running animation control
+    private bool isRunning = false;
+    private bool slidingFix = true;
+    private Quaternion targetRotation; // Variable to store the desired rotation
+    private float rotationLerpSpeed = 5.0f; // Adjust the rotation lerp speed
 
     // Start is called before the first frame update
     void Start()
     {
-        sideRotation = true;
         controller = GetComponent<CharacterController>();
-       
+        transform.rotation = Quaternion.identity;
+        targetRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -33,29 +35,24 @@ public class PlayerController : MonoBehaviour
     {
         if (!PlayerManager.isGameStarted)
         {
-            transform.rotation = Quaternion.identity; // Fix the rotation when not started
             isRunning = true;
-            transform.rotation = Quaternion.identity;
             return;
         }
 
         direction.z = forwardSpeed;
         playerAnim.SetBool("IsRunning", isRunning);
-      
+
+        // Interpolate the rotation smoothly
+        if (slidingFix)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationLerpSpeed);
+        }
+       
         if (controller.isGrounded)
         {
-            if (sideRotation)
-            {
-                transform.rotation = Quaternion.identity;
-                sideRotation = false;
-            }
-            
             if (SwipeManager.swipeUp)
             {
-                sideRotation = true;
-                transform.rotation = Quaternion.identity;
                 StartCoroutine(Jump());
-                transform.rotation = Quaternion.identity;
             }
         }
         else
@@ -64,70 +61,54 @@ public class PlayerController : MonoBehaviour
             direction.y += gravity * Time.deltaTime;
         }
 
-        if (SwipeManager.swipeDown&&!isSliding)
+        if (SwipeManager.swipeDown && !isSliding)
         {
-            transform.rotation = Quaternion.identity;
+            slidingFix = false;
             StartCoroutine(Slide());
         }
 
         if (SwipeManager.swipeRight)
         {
-            sideRotation = true;
-            transform.rotation = Quaternion.identity;
             desiredLane++;
             if (desiredLane >= 3)
             {
-                transform.rotation = Quaternion.identity;
                 desiredLane = 2;
-                transform.rotation = Quaternion.identity;
             }
-            transform.rotation = Quaternion.identity;
         }
 
         if (SwipeManager.swipeLeft)
         {
-            sideRotation = true;
-            transform.rotation = Quaternion.identity;
             desiredLane--;
             if (desiredLane <= 0)
             {
-                transform.rotation = Quaternion.identity;
                 desiredLane = 0;
-                transform.rotation = Quaternion.identity;
             }
-            transform.rotation = Quaternion.identity;
         }
 
-         Vector3 targetPosition = transform.position;
+        Vector3 targetPosition = transform.position;
 
-          if (desiredLane == 0)
-          {
-           
+        if (desiredLane == 0)
+        {
             targetPosition.x = -laneDistance;
-          }
-          else if (desiredLane == 2)
-          {
-            
+        }
+        else if (desiredLane == 2)
+        {
             targetPosition.x = laneDistance;
-          }
-          else  // This covers desiredLane == 1
-          {
-              targetPosition.x = 0;  // Center lane
-          }
+        }
+        else
+        {
+            targetPosition.x = 0;
+        }
 
-        /* transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);*/
-      //  float targetX = desiredLane * laneDistance;
-      /*   targetPosition = new Vector3(targetPosition.x,transform.position.y, transform.position.z);
-        transform.position = targetPosition;*/
         if (transform.position == targetPosition)
-             return;
+            return;
+
         Vector3 diff = targetPosition - transform.position;
         Vector3 moveDir = diff.normalized * 15 * Time.deltaTime;
+
         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
         {
-            transform.rotation = Quaternion.identity;
             controller.Move(moveDir);
-            transform.rotation = Quaternion.identity;
         }
         else
         {
@@ -137,34 +118,28 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Slide()
     {
-        transform.rotation = Quaternion.identity;
         isSliding = true;
-        playerAnim.SetBool("IsSliding",true);
-        controller.center = new Vector3(0,0.60f,0);
+        playerAnim.SetBool("IsSliding", true);
+        controller.center = new Vector3(0, 0.60f, 0);
         controller.height = 0.5f;
         yield return new WaitForSeconds(1.3f);
         playerAnim.SetBool("IsSliding", false);
         controller.center = new Vector3(0, 0.79f, 0);
         controller.height = 1.45f;
         isSliding = false;
-        transform.rotation = Quaternion.identity;
-
+        slidingFix = true;
     }
 
     private IEnumerator Jump()
     {
         playerAnim.SetBool("IsJumping", true);
-        transform.rotation = Quaternion.identity;
         direction.y = jumpForce;
-        transform.rotation = Quaternion.identity;
         yield return new WaitForSeconds(1f);
         playerAnim.SetBool("IsJumping", false);
-        transform.rotation = Quaternion.identity;
     }
 
     private void FixedUpdate()
     {
-
         if (!PlayerManager.isGameStarted)
             return;
 
@@ -180,7 +155,6 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("IsDead", true);
             Invoke("GameOver", 2f);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -196,7 +170,7 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("PickUpCoin");
             PlayerManager.totalPoints += 1;
             Destroy(other.gameObject);
-            Debug.Log("Good food: "+other.gameObject.name+" " + PlayerManager.totalPoints);
+            Debug.Log("Good food: " + other.gameObject.name + " " + PlayerManager.totalPoints);
         }
     }
 
