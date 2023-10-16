@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2592499739825632025}
   - component: {fileID: 4101178683924047122}
+  - component: {fileID: 6281798207767558340}
   m_Layer: 0
   m_Name: Drugs
   m_TagString: JunkFood
@@ -302,6 +303,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
+--- !u!136 &6281798207767558340
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667716708727714585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.12
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4025449681544510353
 GameObject:
   m_ObjectHideFlags: 0
